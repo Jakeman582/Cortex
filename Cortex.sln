@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cortex", "Cortex\Cortex.vcxproj", "{7DED68D0-1F03-44E9-A2EF-1568A5DCF9E2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Calculation", "Calculation\Calculation.vcxproj", "{9308B43F-E0D8-48EE-A93E-08AFD1A1CB20}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinearAlgebra", "LinearAlgebra\LinearAlgebra.vcxproj", "{F7A2D83D-2208-4AB9-B84A-265CBE35B44C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cortex", "Cortex\Cortex.vcxproj", "{7DED68D0-1F03-44E9-A2EF-1568A5DCF9E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{7DED68D0-1F03-44E9-A2EF-1568A5DCF9E2}.Debug|x64.Build.0 = Release|x64
 		{7DED68D0-1F03-44E9-A2EF-1568A5DCF9E2}.Release|x64.ActiveCfg = Release|x64
 		{7DED68D0-1F03-44E9-A2EF-1568A5DCF9E2}.Release|x64.Build.0 = Release|x64
-		{F7A2D83D-2208-4AB9-B84A-265CBE35B44C}.Debug|x64.ActiveCfg = Debug|x64
-		{F7A2D83D-2208-4AB9-B84A-265CBE35B44C}.Debug|x64.Build.0 = Debug|x64
-		{F7A2D83D-2208-4AB9-B84A-265CBE35B44C}.Release|x64.ActiveCfg = Release|x64
-		{F7A2D83D-2208-4AB9-B84A-265CBE35B44C}.Release|x64.Build.0 = Release|x64
+		{9308B43F-E0D8-48EE-A93E-08AFD1A1CB20}.Debug|x64.ActiveCfg = Release|x64
+		{9308B43F-E0D8-48EE-A93E-08AFD1A1CB20}.Debug|x64.Build.0 = Release|x64
+		{9308B43F-E0D8-48EE-A93E-08AFD1A1CB20}.Release|x64.ActiveCfg = Release|x64
+		{9308B43F-E0D8-48EE-A93E-08AFD1A1CB20}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
