@@ -16,6 +16,9 @@ namespace Cortex
 		Matrix& operator=(const Matrix& right);
 		Matrix& operator+=(const Matrix& right);
 
+		Matrix& operator*=(double scale);
+		Matrix& operator*=(const Matrix& other);
+
 		double operator()(int row, int column) const;
 		double& operator()(int row, int column);
 
@@ -32,3 +35,7 @@ namespace Cortex
 }
 
 Cortex::Matrix operator+(const Cortex::Matrix& left, const Cortex::Matrix& right);
+
+Cortex::Matrix operator*(double scale, const Cortex::Matrix& other);
+Cortex::Matrix operator*(const Cortex::Matrix& other, double scale);
+Cortex::Matrix operator*(const Cortex::Matrix& left, const Cortex::Matrix& right);
