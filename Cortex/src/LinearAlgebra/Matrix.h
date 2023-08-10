@@ -9,9 +9,13 @@ namespace Cortex
 	{
 
 	public:
+		Matrix();
 		Matrix(int rows, int columns);
 		Matrix(const Matrix& other);
 		~Matrix();
+
+		int get_rows() const;
+		int get_columns() const;
 
 		Matrix& operator=(const Matrix& right);
 		Matrix& operator+=(const Matrix& right);
@@ -23,7 +27,6 @@ namespace Cortex
 		double& operator()(int row, int column);
 
 		std::string to_string();
-
 
 	private:
 		int m_rows;

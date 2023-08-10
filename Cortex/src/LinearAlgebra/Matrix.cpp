@@ -1,5 +1,11 @@
 #include "Matrix.h"
 
+Cortex::Matrix::Matrix()
+	: m_rows(1), m_columns(1)
+{
+	m_buffer = new double[1];
+	(*this)(0, 0) = 0.0;
+}
 
 Cortex::Matrix::Matrix(int rows, int columns)
 	: m_rows(rows), m_columns(columns)
@@ -33,6 +39,16 @@ Cortex::Matrix::Matrix(const Cortex::Matrix& other)
 Cortex::Matrix::~Matrix()
 {
 	delete[] m_buffer;
+}
+
+int Cortex::Matrix::get_rows() const
+{
+	return m_rows;
+}
+
+int Cortex::Matrix::get_columns() const
+{
+	return m_columns;
 }
 
 Cortex::Matrix& Cortex::Matrix::operator=(const Cortex::Matrix& right)
@@ -71,11 +87,25 @@ Cortex::Matrix& Cortex::Matrix::operator+=(const Cortex::Matrix& right)
 	return *this;
 }
 
-Cortex::Matrix operator+(const Cortex::Matrix& left, const Cortex::Matrix& right)
+Cortex::Matrix& Cortex::Matrix::operator*=(double scale)
 {
-	Cortex::Matrix sum = left;
-	sum += right;
-	return sum;
+	for(int r = 0; r < m_rows; ++r)
+	{
+		for(int c = 0; c < m_columns; ++c)
+		{
+			(*this)(r, c) *= scale;
+		}
+	}
+
+	return *this;
+}
+
+Cortex::Matrix& Cortex::Matrix::operator*=(const Cortex::Matrix& other)
+{
+
+	Cortex::Matrix product = (*this) * other;
+	*this = product;
+	return *this;
 }
 
 double Cortex::Matrix::operator()(int row, int column) const
@@ -104,4 +134,54 @@ std::string Cortex::Matrix::to_string()
 	}
 
 	return matrix_string;
+}
+
+Cortex::Matrix operator+(const Cortex::Matrix& left, const Cortex::Matrix& right)
+{
+	Cortex::Matrix sum = left;
+	sum += right;
+	return sum;
+}
+
+Cortex::Matrix operator*(double scale, const Cortex::Matrix& other)
+{
+	Cortex::Matrix scaled_matrix = other;
+	scaled_matrix *= scale;
+	return scaled_matrix;
+
+}
+
+Cortex::Matrix operator*(const Cortex::Matrix& other, double scale)
+{
+	Cortex::Matrix scaled_matrix = other;
+	scaled_matrix *= scale;
+	return scaled_matrix;
+}
+
+Cortex::Matrix operator*(const Cortex::Matrix& left, const Cortex::Matrix& right)
+{
+	int rows = left.get_rows();
+	int columns = right.get_columns();
+
+	int dimension = left.get_columns();
+
+	Cortex::Matrix product(rows, columns);
+
+	for(int r = 0; r < rows; ++r)
+	{
+		for(int c = 0; c < columns; ++c)
+		{
+
+			double dot_product = 0.0;
+
+			for(int d = 0; d < dimension; ++d)
+			{
+				dot_product += (left(r, d) * right(d, c));
+			}
+
+			product(r, c) = dot_product;
+		}
+	}
+
+	return product;
 }
