@@ -17,8 +17,13 @@ namespace Cortex
 		int get_rows() const;
 		int get_columns() const;
 
+		void reshape(int rows, int columns);
+
+		Matrix& transpose();
+
 		Matrix& operator=(const Matrix& right);
 		Matrix& operator+=(const Matrix& right);
+		Matrix& operator-=(const Matrix& right);
 
 		Matrix& operator*=(double scale);
 		Matrix& operator*=(const Matrix& other);
@@ -38,6 +43,7 @@ namespace Cortex
 }
 
 Cortex::Matrix operator+(const Cortex::Matrix& left, const Cortex::Matrix& right);
+Cortex::Matrix operator-(const Cortex::Matrix& left, const Cortex::Matrix& right);
 
 Cortex::Matrix operator*(double scale, const Cortex::Matrix& other);
 Cortex::Matrix operator*(const Cortex::Matrix& other, double scale);

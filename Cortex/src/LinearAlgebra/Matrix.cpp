@@ -24,7 +24,7 @@ Cortex::Matrix::Matrix(int rows, int columns)
 Cortex::Matrix::Matrix(const Cortex::Matrix& other)
 	: m_rows(other.m_rows), m_columns(other.m_columns)
 {
-	delete[] m_buffer;
+	//delete[] m_buffer;
 	m_buffer = new double[m_rows * m_columns];
 
 	for(int r = 0; r < m_rows; ++r)
@@ -49,6 +49,39 @@ int Cortex::Matrix::get_rows() const
 int Cortex::Matrix::get_columns() const
 {
 	return m_columns;
+}
+
+void Cortex::Matrix::reshape(int rows, int columns)
+{
+	delete[] m_buffer;
+
+	m_rows = rows;
+	m_columns = columns;
+
+	m_buffer = new double[m_rows * m_columns];
+
+	for(int r = 0; r < m_rows; ++r)
+	{
+		for(int c = 0; c < m_columns; ++c)
+		{
+			(*this)(r, c) = 0.0;
+		}
+	}
+}
+
+Cortex::Matrix& Cortex::Matrix::transpose()
+{
+	Cortex::Matrix* transpose = new Cortex::Matrix(m_columns, m_rows);
+
+	for(int r = 0; r < m_rows; ++r)
+	{
+		for(int c = 0; c < m_columns; ++c)
+		{
+			(*transpose)(c, r) = (*this)(r, c);
+		}
+	}
+
+	return *transpose;
 }
 
 Cortex::Matrix& Cortex::Matrix::operator=(const Cortex::Matrix& right)
@@ -81,6 +114,19 @@ Cortex::Matrix& Cortex::Matrix::operator+=(const Cortex::Matrix& right)
 		for(int c = 0; c < m_columns; ++c)
 		{
 			(*this)(r, c) += right(r, c);
+		}
+	}
+
+	return *this;
+}
+
+Cortex::Matrix& Cortex::Matrix::operator-=(const Cortex::Matrix& right)
+{
+	for(int r = 0; r < m_rows; ++r)
+	{
+		for(int c = 0; c < m_columns; ++c)
+		{
+			(*this)(r, c) -= right(r, c);
 		}
 	}
 
@@ -140,6 +186,13 @@ Cortex::Matrix operator+(const Cortex::Matrix& left, const Cortex::Matrix& right
 {
 	Cortex::Matrix sum = left;
 	sum += right;
+	return sum;
+}
+
+Cortex::Matrix operator-(const Cortex::Matrix& left, const Cortex::Matrix& right)
+{
+	Cortex::Matrix sum = left;
+	sum -= right;
 	return sum;
 }
 

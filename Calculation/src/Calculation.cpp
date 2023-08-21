@@ -1,55 +1,66 @@
 #include <iostream>
+#include <chrono>
+#include <random>
 
 #include <LinearAlgebra/Matrix.h>
+#include <Regression/LinearRegressor.h>
 
 int main()
 {
+	Cortex::LinearRegressor reg_1 = Cortex::LinearRegressor();
 
-	Cortex::Matrix basic_matrix;
-	std::cout << basic_matrix.to_string() << std::endl;
+	// We want to generate a linear model approximating
+	// 1 + 2x_1 + 3x_2 + 4x_3 + 5x_4 = y
+	double t_0 = 1.0;
+	double t_1 = 2.0;
+	double t_2 = 3.0;
+	double t_3 = 4.0;
+	double t_4 = 5.0;
 
-	Cortex::Matrix row_vector(1, 3);
-	std::cout << row_vector.to_string() << std::endl;
+	// We can uniformly generate values for paramters
+	unsigned seed_1 = std::chrono::system_clock::now().time_since_epoch().count();
+	std::default_random_engine parameter_generator(seed_1);
+	std::uniform_real_distribution<double> parameter_distribution(-100.0, 100.0);
 
-	Cortex::Matrix column_vector(3, 1);
-	std::cout << column_vector.to_string() << std::endl;
+	// We'll want to distribute errors to each value according to a normal distribution
+	unsigned seed_2 = std::chrono::system_clock::now().time_since_epoch().count();
+	std::default_random_engine value_generator(seed_2);
+	std::normal_distribution<double> value_distribution(0.0, 1.0);
+	
+	// Generate 1000 sample points, for 4 features
+	int number_samples = 1000;
+	int number_features = 4;
+	Cortex::Matrix data = Cortex::Matrix(number_samples, number_features);
+	Cortex::Matrix labels = Cortex::Matrix(number_samples, 1);
 
-	Cortex::Matrix matrix_1(3, 3);
-	Cortex::Matrix matrix_2(3, 3);
+	// For the number of samples, we want to generate random points, and then add a little bit 
+	// of distortion to each y value to generate each sample
+	for(int i = 0; i < number_samples; ++i)
+	{
+		double x_1 = parameter_distribution(parameter_generator);
+		double x_2 = parameter_distribution(parameter_generator);
+		double x_3 = parameter_distribution(parameter_generator);
+		double x_4 = parameter_distribution(parameter_generator);
 
-	std::cout << matrix_1.to_string() << "\n" << matrix_2.to_string() << "\n";
+		double y = t_0 +
+			t_1 * x_1 +
+			t_2 * x_2 +
+			t_3 * x_3 +
+			t_4 * x_4;
 
-	matrix_1(0, 0) = 1.0;
-	matrix_2(2, 2) = 1.0;
+		double delta_y = value_distribution(value_generator);
 
-	std::cout << matrix_1.to_string() << "\n" << matrix_2.to_string() << "\n";
+		data(i, 0) = x_1;
+		data(i, 1) = x_2;
+		data(i, 2) = x_3;
+		data(i, 3) = x_4;
 
-	Cortex::Matrix sum = matrix_1 + matrix_2;
-	std::cout << sum.to_string() << "\n";
+		labels(i, 0) = y + delta_y;
 
-	Cortex::Matrix matrix_3(3, 3);
-	matrix_3(1, 1) = 1.0;
+	}
 
-	sum += matrix_3;
-	std::cout << sum.to_string() << "\n";
+	reg_1.fit(data, labels);
 
-	Cortex::Matrix A(3, 3);
-	A(0, 0) = 1, A(0, 1) = 2, A(0, 2) = 3;
-	A(1, 0) = 4, A(1, 1) = 5, A(1, 2) = 6;
-	A(2, 0) = 7, A(2, 1) = 8, A(2, 2) = 9;
-
-	Cortex::Matrix B(3, 3);
-	B(0, 0) = 4, B(0, 1) = 9, B(0, 2) = 9;
-	B(1, 0) = 6, B(1, 1) = 2, B(1, 2) = 9;
-	B(2, 0) = 6, B(2, 1) = 6, B(2, 2) = 0;
-
-	std::cout << (A * B).to_string() << std::endl;
-
-	Cortex::Matrix C(3, 3);
-	C(0, 0) = 1, C(0, 1) = 1, C(0, 2) = 1;
-	C(1, 0) = 2, C(1, 1) = 2, C(1, 2) = 2;
-	C(2, 0) = 4, C(2, 1) = 4, C(2, 2) = 4;
-	A *= C;
-	std::cout << A.to_string() << "\n";
+	std::cout << reg_1.get_parameters().to_string() << std::endl;
 
 }

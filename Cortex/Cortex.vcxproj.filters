@@ -18,9 +18,21 @@
     <ClInclude Include="src\LinearAlgebra\Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Regression\LinearRegressor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Regression\LogisticRegressor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\LinearAlgebra\Matrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Regression\LinearRegressor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Regression\LogisticRegressor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
