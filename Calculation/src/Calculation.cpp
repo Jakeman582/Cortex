@@ -17,7 +17,7 @@ int main()
 	double t_3 = 4.0;
 	double t_4 = 5.0;
 
-	// We can uniformly generate values for paramters
+	// We can uniformly generate values for parameters
 	unsigned seed_1 = std::chrono::system_clock::now().time_since_epoch().count();
 	std::default_random_engine parameter_generator(seed_1);
 	std::uniform_real_distribution<double> parameter_distribution(-100.0, 100.0);
