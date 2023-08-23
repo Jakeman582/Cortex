@@ -14,11 +14,13 @@
     <ClInclude Include="src\Regression\LogisticRegressor.h" />
     <ClInclude Include="src\Regression\LinearRegressor.h" />
     <ClInclude Include="src\LinearAlgebra\Matrix.h" />
+    <ClInclude Include="src\Statistics\Statistics.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Regression\LogisticRegressor.cpp" />
     <ClCompile Include="src\Regression\LinearRegressor.cpp" />
     <ClCompile Include="src\LinearAlgebra\Matrix.cpp" />
+    <ClCompile Include="src\Statistics\Statistics.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
