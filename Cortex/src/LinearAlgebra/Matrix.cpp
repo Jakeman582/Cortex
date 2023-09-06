@@ -51,6 +51,11 @@ int Cortex::Matrix::get_columns() const
 	return m_columns;
 }
 
+int Cortex::Matrix::get_size() const
+{
+	return m_rows * m_columns;
+}
+
 void Cortex::Matrix::reshape(int rows, int columns)
 {
 	delete[] m_buffer;

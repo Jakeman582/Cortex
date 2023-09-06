@@ -1,7 +1,10 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 #include <chrono>
 #include <random>
 
+//#include <Cortex/Utilities.h>
 #include <LinearAlgebra/Matrix.h>
 #include <Statistics/Statistics.h>
 #include <Regression/LinearRegressor.h>
@@ -9,23 +12,29 @@
 int main()
 {
 
-	int number_data = 10000;
-	
-	Cortex::Matrix data(number_data, 1);
-
-	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-	std::default_random_engine generator(seed);
-	std::normal_distribution<double> distribution(0.0, 1.0);
-
-	for(int r = 0; r < number_data; ++r)
+	const int number_data = 10;
+	std::vector<double> numbers;
+	numbers.reserve(number_data);
+	for(int index = 0; index < number_data; ++index)
 	{
-		data(r, 0) = distribution(generator);
+		numbers.push_back(index);
 	}
 
-	double mean = Cortex::mean(data);
-	double standard_deviation = Cortex::standard_deviation(data);
+	unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
+	std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(seed));
+	
+	Cortex::Matrix data(number_data, 1);
+	int index = 0;
+	for(int r = 0; r < data.get_rows(); ++r)
+	{
+		for(int c = 0; c < data.get_columns(); ++c)
+		{
+			data(r, c) = numbers[index];
+			index++;
+		}
+	}
 
-	std::cout << "Mean:               " << mean << std::endl <<
-		"Standard Deviation: " << standard_deviation << std::endl;
+	double median = Cortex::median(data);
+	std::cout << "Median: " << median << std::endl;
 
 }

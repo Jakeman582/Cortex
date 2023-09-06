@@ -16,6 +16,7 @@ namespace Cortex
 
 		int get_rows() const;
 		int get_columns() const;
+		int get_size() const;
 
 		void reshape(int rows, int columns);
 
