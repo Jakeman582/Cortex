@@ -4,7 +4,6 @@
 #include <chrono>
 #include <random>
 
-//#include <Cortex/Utilities.h>
 #include <LinearAlgebra/Matrix.h>
 #include <Statistics/Statistics.h>
 #include <Regression/LinearRegressor.h>
@@ -12,18 +11,9 @@
 int main()
 {
 
-	const int number_data = 10;
-	std::vector<double> numbers;
-	numbers.reserve(number_data);
-	for(int index = 0; index < number_data; ++index)
-	{
-		numbers.push_back(index);
-	}
-
-	unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
-	std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(seed));
+	std::vector<double> numbers = { 14, 7, 6, 5, 12, 38, 8, 7, 10, 10, 10, 11, 4, 5, 22, 7, 5, 10, 35, 7 };
 	
-	Cortex::Matrix data(number_data, 1);
+	Cortex::Matrix data(numbers.size(), 1);
 	int index = 0;
 	for(int r = 0; r < data.get_rows(); ++r)
 	{
@@ -34,7 +24,11 @@ int main()
 		}
 	}
 
+	double q1 = Cortex::first_quartile(data);
 	double median = Cortex::median(data);
-	std::cout << "Median: " << median << std::endl;
+	double q3 = Cortex::third_quartile(data);
+	double range = Cortex::range(data);
+	double iqr = Cortex::iqr(data);
+	std::cout << q1 << ", " << median << ", " << q3 << ", " << range << ", " << iqr << std::endl;
 
 }
