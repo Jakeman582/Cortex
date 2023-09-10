@@ -11,12 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Graphing\Summary.h" />
     <ClInclude Include="src\Regression\LogisticRegressor.h" />
     <ClInclude Include="src\Regression\LinearRegressor.h" />
     <ClInclude Include="src\LinearAlgebra\Matrix.h" />
     <ClInclude Include="src\Statistics\Statistics.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Graphing\Summary.cpp" />
     <ClCompile Include="src\Regression\LogisticRegressor.cpp" />
     <ClCompile Include="src\Regression\LinearRegressor.cpp" />
     <ClCompile Include="src\LinearAlgebra\Matrix.cpp" />
@@ -70,11 +72,16 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Source\opencv\build\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>C:\Source\opencv\build\x64\vc16\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_world480d;</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -85,6 +92,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Source\opencv\build\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -92,6 +100,10 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>C:\Source\opencv\build\x64\vc16\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_world480.lib;</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

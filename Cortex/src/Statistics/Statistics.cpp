@@ -82,21 +82,17 @@ double Cortex::standard_deviation(Cortex::Matrix data)
 	return sqrt(Cortex::variance(data));
 }
 
-double Cortex::range(Cortex::Matrix data)
+double Cortex::minimum(Cortex::Matrix data)
 {
 	double minimum = data(0, 0);
-	double maximum = data(0, 0);
-
 	for(int r = 0; r < data.get_rows(); ++r)
 	{
 		for(int c = 0; c < data.get_columns(); ++c)
 		{
 			minimum = std::min(minimum, data(r, c));
-			maximum = std::max(maximum, data(r, c));
 		}
 	}
-
-	return maximum - minimum;
+	return minimum;
 }
 
 double Cortex::first_quartile(Cortex::Matrix data)
@@ -167,6 +163,27 @@ double Cortex::third_quartile(Cortex::Matrix data)
 		std::nth_element(data_copy.begin(), data_copy.begin() + q3_index, data_copy.end());
 		return data_copy[q3_index];
 	}
+}
+
+double Cortex::maximum(Cortex::Matrix data)
+{
+	double maximum = data(0, 0);
+	for(int r = 0; r < data.get_rows(); ++r)
+	{
+		for(int c = 0; c < data.get_columns(); ++c)
+		{
+			maximum = std::max(maximum, data(r, c));
+		}
+	}
+	return maximum;
+}
+
+double Cortex::range(Cortex::Matrix data)
+{
+	double minimum = Cortex::minimum(data);
+	double maximum = Cortex::maximum(data);
+
+	return maximum - minimum;
 }
 
 double Cortex::iqr(Cortex::Matrix data)
