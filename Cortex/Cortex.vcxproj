@@ -11,14 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Graphing\Summary.h" />
+    <ClInclude Include="src\Statistics\Graphics.h" />
     <ClInclude Include="src\Regression\LogisticRegressor.h" />
     <ClInclude Include="src\Regression\LinearRegressor.h" />
     <ClInclude Include="src\LinearAlgebra\Matrix.h" />
     <ClInclude Include="src\Statistics\Statistics.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Graphing\Summary.cpp" />
+    <ClCompile Include="src\Statistics\Graphics.cpp" />
     <ClCompile Include="src\Regression\LogisticRegressor.cpp" />
     <ClCompile Include="src\Regression\LinearRegressor.cpp" />
     <ClCompile Include="src\LinearAlgebra\Matrix.cpp" />

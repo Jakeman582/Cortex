@@ -4,7 +4,7 @@
 
 #include "../Statistics/Statistics.h"
 
-#include "Summary.h"
+#include "Graphics.h"
 
 void Cortex::box_and_whisker(Cortex::Matrix data, int image_width, int image_height)
 {

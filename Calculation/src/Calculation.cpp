@@ -7,14 +7,14 @@
 #include <LinearAlgebra/Matrix.h>
 #include <Statistics/Statistics.h>
 #include <Regression/LinearRegressor.h>
-#include <Graphing/Summary.h>
+#include <Statistics/Graphics.h>
 
 int main()
 {
 
 	unsigned int seed = std::chrono::system_clock().now().time_since_epoch().count();
 	std::default_random_engine generator(seed);
-	std::extreme_value_distribution<double> distribution(50.0, 70.0);
+	std::extreme_value_distribution<double> distribution(70.0, 50.0);
 
 	Cortex::Matrix data(1000, 1);
 	for(int r = 0; r < data.get_rows(); ++r)

@@ -27,7 +27,7 @@
     <ClInclude Include="src\Statistics\Statistics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Graphing\Summary.h">
+    <ClInclude Include="src\Statistics\Graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,7 +44,7 @@
     <ClCompile Include="src\Statistics\Statistics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graphing\Summary.cpp">
+    <ClCompile Include="src\Statistics\Graphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
